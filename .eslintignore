@@ -1,0 +1,24 @@
+# Editor
+/.idea
+/.vscode
+
+# Project
+.env*
+/dist
+/node_modules
+/coverage
+/.husky
+
+
+# Configs
+.prettierignore
+.eslintignore
+.gitattributes
+.gitignore
+.npmrc
+
+# Misc
+*.png
+
+# Docker
+/ops
