@@ -1,9 +1,10 @@
 import {Module} from "@nestjs/common";
 
-import {UserModule} from "@infra/di/user.module";
+import {UserController} from "@controllers/user.controller";
+import {AppModule} from "@infra/di/modules";
 
 @Module({
-    imports: [UserModule],
-    exports: [UserModule]
+    imports: [AppModule],
+    controllers: [UserController]
 })
-export class AppModule {}
+export class WebModule {}

@@ -1,16 +1,19 @@
-import {Body, Controller, Get, HttpCode, Param, Post, Query, Req, Res} from "@nestjs/common";
+import {Body, Controller, Get, HttpCode, Inject, Param, Post, Query, Req, Res} from "@nestjs/common";
+
+import {USER_PROVIDER} from "@valueObjects/user.valueObject";
+import {FastifyRequest} from "fastify";
 
 // import {CreateUserDto} from "@dtos/user.dto";
-import {UserService} from "@services/user.service";
-import {FastifyReply, FastifyRequest} from "fastify";
+import type {UserService} from "@services/user.service";
+import type {FastifyReply} from "fastify";
 
 @Controller("users")
 export class UserController {
-    constructor(private readonly appService: UserService) {}
+    constructor(@Inject(USER_PROVIDER.USER_SERVICE) private readonly userService: UserService) {}
 
     @Post("asd/")
     // @HttpCode(201)
     createUser(@Body() body: any, @Res({passthrough: true}) response: FastifyReply) {
-        return this.appService.createUser(body);
+        return this.userService.findUser();
     }
 }

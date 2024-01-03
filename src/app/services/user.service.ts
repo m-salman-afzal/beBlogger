@@ -1,13 +1,17 @@
 import {Inject, Injectable} from "@nestjs/common";
 
-import {UserRepository} from "@infra/database/repositories/user.repository";
+import {USER_PROVIDER} from "@valueObjects/user.valueObject";
+
+import type {UserRepository} from "@infra/database/repositories/user.repository";
 
 @Injectable()
 export class UserService {
-    constructor(private userRepository: UserRepository) {}
+    constructor(@Inject(USER_PROVIDER.USER_REPOSITORY) private userRepository: UserRepository) {}
 
-    async createUser(createUserDto: any) {
-        const asd = await this.userRepository.insert({name: "asd"});
+    async findUser() {
+        const asd = await this.userRepository.findOne();
+
+        return asd;
     }
 
     getUsers() {

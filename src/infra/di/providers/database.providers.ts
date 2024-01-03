@@ -1,9 +1,9 @@
-import {databaseConfig} from "@infraConfig/index.config";
+import {databaseConfig} from "@infraConfig/index";
 import {DATABASE_PROVIDER} from "@valueObjects/database.valueObject";
 import {drizzle} from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
 
-import * as schema from "./models/user.model";
+import * as schema from "../../database/models";
 
 export const databaseProviders = [
     {

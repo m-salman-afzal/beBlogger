@@ -10,3 +10,7 @@ export const user = mysqlTable("users", {
     password: varchar("password", {length: 256}),
     type: varchar("type", {length: 256})
 });
+
+export type TUserInsert = typeof user.$inferInsert;
+export type TUserSelect = typeof user.$inferSelect;
+export type TUser = typeof user._;

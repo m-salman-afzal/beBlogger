@@ -1,18 +1,15 @@
 import {Inject, Injectable} from "@nestjs/common";
 
+import {user} from "@database/models";
 import {DATABASE_PROVIDER} from "@valueObjects/database.valueObject";
-import {PlanetScaleDatabase} from "drizzle-orm/planetscale-serverless";
 
-import {user} from "../models/user.model";
+import {BaseRepository} from "./base.repository";
+
+import type {MySql2Database} from "drizzle-orm/mysql2";
 
 @Injectable()
-export class UserRepository {
-    constructor(@Inject(DATABASE_PROVIDER.MYSQL) private readonly userModel: PlanetScaleDatabase) {}
-    async findOne(entity: any) {
-        return await this.userModel.select().from(user);
-    }
-
-    async insert(entity: any) {
-        return await this.userModel.insert(user).values(entity);
+export class UserRepository extends BaseRepository {
+    constructor(@Inject(DATABASE_PROVIDER.MYSQL) dataSource: MySql2Database) {
+        super(dataSource, user);
     }
 }
